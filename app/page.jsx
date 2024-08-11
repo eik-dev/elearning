@@ -84,7 +84,7 @@ export default function Home(){
                 <div className='flex md:justify-around gap-5 overflow-x-scroll'>
                     {
                         [...new Array(3)].map((_,i)=>(
-                            <div className='bg-white rounded-3xl min-w-[90%] md:min-w-96 md:w-96'>
+                            <div key={i} className='bg-white rounded-3xl min-w-[90%] md:min-w-96 md:w-96'>
                                 <img src="/energy.png" alt="" />
                                 <div className='p-5'>
                                     <h5 className='font-semibold text-center mb-4 text-xl text-tertiary'>Energy Management</h5>
