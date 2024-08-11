@@ -10,10 +10,11 @@ module.exports = {
     extend: {
       colors:{
         primary:'#74A942',
+        primaryLight:'rgba(0, 147, 15, 0.17)',
         secondary:'#1083AC',
         layer:'#FBFBFB',
         warning:'#C64130',
-        tertiary:'#D9D9D9',
+        tertiary:'#422B0D',
         surface:'#C8EAA7',
       }
     },

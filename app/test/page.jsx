@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { fetcher, getData } from "@/app/lib/data";
 
 export default function Page() {
-  let { data, error, isLoading } = useSWR(['/test/books',{}], fetcher);
+  let { data, error, isLoading } = useSWR(['/books',{}], fetcher);
  
   if (error){
     console.log(error)
