@@ -40,3 +40,7 @@ input[type=number]{
 input[type=file]{
   display: none;
 }
+
+.angularGradient {
+  background: conic-gradient(from 0deg, #ff7e5f, #feb47b);
+}

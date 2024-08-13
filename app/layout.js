@@ -2,6 +2,7 @@ import {  Montserrat } from "next/font/google";
 import "./globals.css";
 import { MobileTopMenu, MobileSideMenu, TopMenu } from "./UI/Menus";
 import Maintenance from '@/app/UI/Maintenace';
+import { ContactUs } from "./UI/Question";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -15,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${montserrat.className} bg-[#EAEFD8] text-base lg:text-sm 2xl:text-base`}>
         {
-          true? //TODO: change to false
+          false? //TODO: change to false
           <Maintenance/>
           :
           <>
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
             <MobileTopMenu />
             <MobileSideMenu />
             {children}
+            <ContactUs />
             <footer className="bg-primary h-60 w-full mt-10"></footer>
           </>
         }

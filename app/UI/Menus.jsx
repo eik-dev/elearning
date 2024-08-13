@@ -102,7 +102,7 @@ export function TopMenu(){
                     {
                         pages.map((page,i) => {
                             return(
-                                <Link key={i} className={`${pathname===page.href?'text-primary':''} hover:text-secondary font-semibold`} href={page.href}>{page.text}</Link>
+                                <Link key={i} className={`${pathname===page.href?'text-primary':''} hover:text-secondary font-semibold text-sm`} href={page.href}>{page.text}</Link>
                             )
                         })
                     }

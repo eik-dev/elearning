@@ -16,6 +16,8 @@ module.exports = {
         warning:'#C64130',
         tertiary:'#422B0D',
         surface:'#C8EAA7',
+        button: '#56A4BD',
+        hover:'#3f8ba6',
       }
     },
   },
