@@ -24,7 +24,7 @@ export default function Maintenance() {
           autoplay
         />
       </div>
-      <Countdown target="August 12, 2024"/>
+      <Countdown target="August 16, 2024"/>
       <h3 className='my-8 text-lg w-full text-center font-extrabold tracking-wide'>TO LAUNCH</h3>
       <div>
       <Input type='email' value={email} setValue={setEmail} placeholder='Enter your email' disabled={false} name='Email' required={false}/>
