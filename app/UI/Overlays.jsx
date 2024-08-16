@@ -14,6 +14,7 @@ export default function Overlays(){
         setPage(e.detail.page)
     }
 
+    
     return(
         <Overlay id="overlays" className={`${page==''?'hidden':'block'}`}>
             {page=='/login' && <Login control={setPage}/>}

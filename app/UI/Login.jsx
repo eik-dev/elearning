@@ -1,33 +1,86 @@
-'use client'
-import { useState, useEffect } from "react"
-import Input from "../Input"
-import Logo from "./Logo"
-import { postData } from "@/app/lib/data"
-import {load} from "@/app/lib/storage"
-import useUser from "@/app/lib/hooks/useUser"
+'use client';
+import { useState } from 'react';
+import Input from '../Input';
+import Logo from './Logo';
+import useUser from '@/app/lib/hooks/useUser';
+import { load } from '@/app/lib/storage';
 
-export default function Login({control}){
-    let [phone, setPhone] = useState('');
-    let [password, setPassword] = useState('');
+export default function Login({ control }) {
+    const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    let { login } = useUser();
+    const { login } = useUser();
 
-    let submit = (e)=>{
+    const submit = (e) => {
         e.preventDefault();
-        login(phone,password,(_)=>{if(load('token')!=null) control('')})
-    }
+        login(phone, password, (_) => {
+            if (load('token') != null) {
+                setIsModalOpen(false); // Close modal on successful login
+                control(''); // Handle post-login logic
+            }
+        });
+    };
 
-    return(
-        <div className="bg-primary-base p-3 rounded-lg flex flex-col items-center justify-center gap-1">
-            <Logo/>
-            <div className="flex">
-                <h3 className="text-xl font-bold">Login</h3>
-                <button onClick={e=>control('')} className="w-8 h-8"><span className="icon-[material-symbols-light--close] w-8 h-8"/></button>
+    return (
+        <>
+            {/* Login Button for Mobile */}
+            <div className="block md:hidden">
+                <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="flex items-center text-white px-4 py-2 bg-blue-500 rounded-lg transition-all hover:bg-blue-600"
+                >
+                    Login
+                </button>
             </div>
-            <Input value={phone} setValue={setPhone} placeholder={'Enter Phone Number'} type={'tel'} name={'Phone Number'}/>
-            <Input value={password} setValue={setPassword} placeholder={'Enter Password'} type={'password'} name={'Password'}/>
-            <button className="text-right text-xs 2xl:text-sm text-primary-light font-semibold">Forgot password?</button>
-            <button onClick={e=>submit(e)} className="bg-primary-light font-semibold w-full rounded-lg py-2 my-4">Continue</button>
-        </div>
-    )
+
+            {/* Login Modal */}
+            {isModalOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+                    <div className="relative bg-white w-11/12 max-w-md p-6 rounded-lg shadow-lg">
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setIsModalOpen(false)}
+                            className="absolute top-4 right-4 text-gray-700 hover:text-gray-900"
+                        >
+                            {/* Close (X) Icon */}
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                        <Logo />
+                        <h3 className="text-xl font-bold text-center mb-4">Login</h3>
+                        <form onSubmit={submit} className="flex flex-col items-center">
+                            <Input
+                                value={phone}
+                                setValue={setPhone}
+                                placeholder={'Enter Phone Number'}
+                                type={'tel'}
+                                name={'Phone Number'}
+                            />
+                            <Input
+                                value={password}
+                                setValue={setPassword}
+                                placeholder={'Enter Password'}
+                                type={'password'}
+                                name={'Password'}
+                            />
+                            <button
+                                type="button"
+                                className="text-right text-xs text-primary-light font-semibold mt-2"
+                            >
+                                Forgot password?
+                            </button>
+                            <button
+                                type="submit"
+                                className="bg-primary-light font-semibold w-full rounded-lg py-2 my-4"
+                            >
+                                Continue
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            )}
+        </>
+    );
 }

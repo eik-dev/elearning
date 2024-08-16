@@ -88,43 +88,41 @@ export function MobileSideMenu(){
     )
 }
 
-export function TopMenu(){
-    let pathname = usePathname();
-    let [overlay, setOverlay] = useState('');
-    const { isLogged, isLoading,error, user } = useUser();
-    
-    return(
+export function TopMenu() {
+    const pathname = usePathname();
+    const { isLogged, isLoading, error } = useUser();
+    const [overlay, setOverlay] = useState(''); // Initialize overlay state
+
+    const handleOverlayToggle = (overlayType) => {
+        setOverlay(overlayType); // Set overlay type when toggled
+    };
+
+    return (
         <header className="hidden md:block bg-primary-dark z-30 top-0">
-            <div className="flex justify-between items-center">
-                <div className="flex justify-around items-center gap-12 w-1/2 bg-primaryLight pl-3 pt-3">
-                    <Logo/>
-                    <div className="flex gap-16">
-                    {
-                        pages.map((page,i) => {
-                            return(
-                                <Link key={i} className={`${pathname===page.href?'text-primary':''} hover:text-secondary font-semibold text-sm`} href={page.href}>{page.text}</Link>
-                            )
-                        })
-                    }
+            <div className="flex justify-between items-center px-4 py-2">
+                <div className="flex justify-between items-center gap-8 w-1/2 bg-primaryLight">
+                    <Logo />
+                    <div className="flex gap-8">
+                        {pages.map((page, i) => (
+                            <Link key={i} className={`text-sm ${pathname === page.href ? 'text-primary' : 'text-gray-700'} hover:text-secondary font-semibold`} href={page.href}>
+                                {page.text}
+                            </Link>
+                        ))}
                     </div>
                 </div>
-                <div className="flex items-center gap-10 mr-3">
-                    <div className="max-h-7 2xl:max-h-10"><Search/></div>
-                {
-                    isLogged && !error && !isLoading?
-                    <div>
-                    </div>
-                    :
-                    <div>
-                        <button className="lg:w-7 2xl:w-9 lg:h-7 2xl:h-9 icon-[carbon--user-avatar] text-gray-700"/>
-                    </div>
-                }
+                <div className="flex items-center gap-4">
+                    <Search />
+                    {isLogged && !error && !isLoading ? (
+                        <div>
+                            {/* User Avatar or Profile Component */}
+                        </div>
+                    ) : (
+                        <button className="lg:w-7 2xl:w-9 lg:h-7 2xl:h-9 icon-[carbon--user-avatar] text-gray-700" />
+                    )}
                 </div>
             </div>
-            <Overlay className={`${overlay==''?'hidden':'block'}`} >
-                {
-                }
-            </Overlay>
+            <Overlay className={`${overlay === '' ? 'hidden' : 'block'}`} />
         </header>
-    )
+    );
 }
+
