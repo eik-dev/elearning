@@ -114,7 +114,7 @@ export default function Trainings() {
                                 </p>
                                 <div className="flex flex-col md:flex-row gap-y-2 md:justify-between items-center mt-4">
                                     <div className="text-gray-800 font-bold text-lg">Ksh {training.price}</div>
-                                    <Link href="/mytraining">
+                                    <Link href="/training">
                                         <button className="bg-blue-500 text-white text-sm rounded-full px-4 py-2 hover:bg-blue-600 transition-all">Check it out</button>
                                     </Link>
                                 </div>
@@ -122,7 +122,7 @@ export default function Trainings() {
                         </div>
                     ))}
                 </div>
-
+                
                 {/* Pagination */}
                 {filteredTrainings.length > coursesPerPage && (
                     <div className="flex justify-center items-center space-x-4 mt-8">

@@ -66,3 +66,11 @@ input[type=file]{
 .angularGradient {
   background: conic-gradient(from 0deg, #ff7e5f, #feb47b);
 }
+
+.custom-bullets {
+  list-style-type: square; /* Change bullet type */
+  padding-left: 20px; /* Add padding */
+}
+.custom-bullets li {
+  color: blue; /* Change bullet color */
+}
