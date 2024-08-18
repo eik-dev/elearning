@@ -19,7 +19,18 @@ export default function AboutUs() {
                 </Parallax>
             </div>
 
-            
+            {/* Login Button for Mobile */}
+            <div className="block md:hidden">
+                <button
+                    onClick={showOverlay}
+                    className="flex items-center text-white px-4 py-2 bg-blue-500 rounded-lg transition-all hover:bg-blue-600"
+                >
+                    Login
+                </button>
+            </div>
+
+            {/* Login Overlay */}
+            <LoginOverlay show={isOverlayVisible} onClose={hideOverlay} control={control} />
 
             <div>
                 <h1 className="flex justify-center p-6 md:p-10 text-lg md:text-xl">Our Partners</h1>
