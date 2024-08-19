@@ -1,6 +1,6 @@
 import {  Montserrat } from "next/font/google";
 import "./globals.css";
-import { MobileTopMenu, MobileSideMenu, TopMenu } from "./UI/Menus";
+import Navbar, { MobileTopMenu, MobileSideMenu, TopMenu } from "./UI/Menus";
 import Maintenance from '@/app/UI/Maintenace';
 import { ContactUs } from "./UI/Question";
 
@@ -21,6 +21,7 @@ export default function RootLayout({ children }) {
           :
           <>
             <TopMenu />
+            <Navbar />
             <MobileTopMenu />
             <MobileSideMenu />
             {children}
