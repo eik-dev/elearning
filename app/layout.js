@@ -1,8 +1,8 @@
 import {  Montserrat } from "next/font/google";
 import "./globals.css";
-import Navbar, { MobileTopMenu, MobileSideMenu, TopMenu } from "./UI/Menus";
 import Maintenance from '@/app/UI/Maintenace';
 import { ContactUs } from "./UI/Question";
+import Navbar from "./UI/Navbar";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -20,10 +20,7 @@ export default function RootLayout({ children }) {
           <Maintenance/>
           :
           <>
-            <TopMenu />
             <Navbar />
-            <MobileTopMenu />
-            <MobileSideMenu />
             {children}
             <ContactUs />
             <footer className="bg-primary h-60 w-full mt-10"></footer>
