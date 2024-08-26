@@ -1,28 +1,29 @@
-'use client'
-import { Fragment, useState } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import Image from 'next/image'
-import Link from 'next/link'
-import Logo from './Logo'
+'use client';
+
+import { Fragment, useState } from 'react';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import Image from 'next/image';
+import Link from 'next/link';
+import Logo from './Logo';
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'Trainings', href: '/trainings', current: false },
   { name: 'About', href: '/about', current: false },
   { name: 'Account', href: '/account', current: false },
-]
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(' ');
 }
 
 function Login({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center backdrop-blur-md">
       <div className="relative bg-gradient-to-r from-gray-300 to-primary w-4/5 max-w-md p-8 rounded-3xl shadow-lg">
         <button
           onClick={onClose}
@@ -32,17 +33,14 @@ function Login({ isOpen, onClose }) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        {/* Logo */}
         <div className="flex justify-center mb-6 mt-8 gap-16">
           <img src="/logo.png" alt="Logo" className="h-12" />
           <img src="/forest.svg" alt="Logo" className="h-12" />
         </div>
-        {/* Google Login */}
         <button className="w-full p-2 rounded flex items-center justify-center mb-4 bg-transparent gap-3 text-gray-800">
           <Image src="/google.svg" alt="My SVG" width={30} height={30} />
           Continue with Google
         </button>
-        {/* Mobile Login */}
         <button className="w-full p-2 rounded flex items-center justify-center mb-4 bg-transparent gap-3 text-gray-800">
           <Image src="/cell-phone.svg" alt="My SVG" width={30} height={30} />
           Continue with Mobile
@@ -50,7 +48,6 @@ function Login({ isOpen, onClose }) {
         <form>
           <input type="email" placeholder="Username or Email" className="w-full p-2 mb-4 border rounded-xl bg-gray-100 text-center" />
           <input type="password" placeholder="Password" className="w-full p-2 mb-4 border rounded-xl bg-gray-100 text-center" />
-          {/* Forgot Password and Sign Up Links */}
           <div className="flex justify-between items-center mb-4">
             <a href="#" className="text-gray-600 hover:underline text-sm">Forgot Password?</a>
             <a href="#" className="text-white hover:underline text-sm">Sign Up</a>
@@ -69,7 +66,7 @@ export default function Navbar() {
     name: 'John Doe',
     email: 'john.doe@example.com',
     imageUrl: '/instructor1.jpeg',
-  })
+  });
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   return (
@@ -206,5 +203,5 @@ export default function Navbar() {
         </>
       )}
     </Disclosure>
-  )
+  );
 }

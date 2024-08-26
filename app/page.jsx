@@ -29,7 +29,7 @@ export default function Home(){
                     <div className="md:absolute mx-2 lg:top-10 lg:right-48  2xl:top-24 2xl:left-44 bg-black rounded-3xl flex items-center justify-center lg:w-7/12 2xl:w-5/12 h-52  lg:h-72 2xl:h-80">
                         {
                             true?
-                            <video src="/video.mp4" className="h-full w-full flex-grow">
+                            <video src="" className="h-full w-full flex-grow">
                             </video>
                             :
                             <button className="icon-[ei--play] text-white w-16 h-16 hover:scale-110"/>

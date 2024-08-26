@@ -3,6 +3,7 @@ import "./globals.css";
 import Maintenance from '@/app/UI/Maintenace';
 import { ContactUs } from "./UI/Question";
 import Navbar from "./UI/Navbar";
+import Footer from "./UI/Footer";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ export default function RootLayout({ children }) {
             <Navbar />
             {children}
             <ContactUs />
-            <footer className="bg-primary h-60 w-full mt-10"></footer>
+            <Footer />
           </>
         }
       </body>

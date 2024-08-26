@@ -9,13 +9,30 @@ export default function Trainings() {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const coursesPerPage = 12;
 
+    const defaultImage = '/trainingimgs/energy.png';
+    const imagePaths = [
+        '/trainingimgs/energy.png',
+        '/trainingimgs/food_safety.jpg',
+        '/trainingimgs/land_acquisition.jpg',
+        '/trainingimgs/sustainability.jpg',
+        '/trainingimgs/water.jpg'
+    ];
+
+    // Function to get a random image or default if not found
+    const getImageOrDefault = (path) => {
+        if (imagePaths.includes(path)) {
+            return path;
+        }
+        return defaultImage;
+    };
+
     const trainings = [...new Array(24)].map((_, i) => ({
         id: i,
         title: `Training ${i + 1}`,
         price: 1000 + i * 500,
         category: i % 2 === 0 ? 'Energy' : 'Water',
         description: 'This one-day training is designed to give delegates an introduction to energy management principles and practical skills.',
-        image: '/energy.png'
+        image: getImageOrDefault(imagePaths[Math.floor(Math.random() * imagePaths.length)])
     }));
 
     const toggleCategory = (category) => {
@@ -37,13 +54,12 @@ export default function Trainings() {
     const indexOfLastCourse = currentPage * coursesPerPage;
     const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
     const currentTrainings = filteredTrainings.slice(indexOfFirstCourse, indexOfLastCourse);
-
     const totalPages = Math.ceil(filteredTrainings.length / coursesPerPage);
 
     return (
         <div className="flex flex-col md:flex-row mx-4 mt-12 space-y-8 md:space-y-0">
             {/* Sidebar for filters */}
-            <div className="hidden md:block w-full md:w-1/4 bg-gray-100 p-6 rounded-lg shadow-md sticky top-24">
+            <div className="hidden md:block w-full md:w-1/4 bg-gray-100 p-6 rounded-lg shadow-md sticky top-24 self-start mr-4">
                 <h6 className="font-semibold text-lg mb-4">Filters</h6>
                 <div className="mb-6">
                     <h6 className="font-semibold text-md mb-2">Price</h6>
@@ -88,41 +104,28 @@ export default function Trainings() {
                 </div>
             </div>
 
-            {/* Filter Toggle Button for Mobile */}
-            <div className="block md:hidden">
-                <button
-                    onClick={() => setIsFilterOpen(true)}
-                    className="flex items-center text-black px-4 py-2 transition-all"
-                >
-                    {/* Funnel Filter Icon */}
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 mr-2">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L15 12.414V19a1 1 0 01-.293.707l-4 4A1 1 0 019 23V12.414L3.293 6.707A1 1 0 013 6V4z" />
-                    </svg>
-                </button>
-            </div>
-
             {/* Training cards */}
             <div className="w-full md:w-3/4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {currentTrainings.map(training => (
                         <div key={training.id} className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
-                            <img src={training.image} alt={training.title} className="h-48 w-full object-cover" />
+                            <img src={training.image} alt={training.title} className="h-40 w-full object-cover" />
                             <div className="p-4">
                                 <h5 className="font-semibold text-center mb-2 text-lg text-gray-800">{training.title}</h5>
                                 <p className="text-sm text-gray-600 leading-loose">
                                     {training.description.slice(0, 100) + '...'}
                                 </p>
                                 <div className="flex flex-col md:flex-row gap-y-2 md:justify-between items-center mt-4">
-                                    <div className="text-gray-800 font-bold text-lg">Ksh {training.price}</div>
+                                    <div className="text-gray-800 font-bold text-sm">Ksh {training.price}</div>
                                     <Link href="/training">
-                                        <button className="bg-blue-500 text-white text-sm rounded-full px-4 py-2 hover:bg-blue-600 transition-all">Check it out</button>
+                                        <button className="bg-blue-500 text-white text-sm rounded-full px-4 py-2 hover:bg-blue-600 transition-all">Check it</button>
                                     </Link>
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
-                
+
                 {/* Pagination */}
                 {filteredTrainings.length > coursesPerPage && (
                     <div className="flex justify-center items-center space-x-4 mt-8">
@@ -201,12 +204,12 @@ export default function Trainings() {
                                 </label>
                             </div>
                         </div>
-                        <div className="flex justify-end mt-6">
+                        <div className="flex justify-center mt-6">
                             <button
                                 onClick={() => setIsFilterOpen(false)}
-                                className="bg-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-600 transition-all"
+                                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all"
                             >
-                                Apply
+                                Apply Filters
                             </button>
                         </div>
                     </div>
