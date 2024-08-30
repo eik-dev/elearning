@@ -5,7 +5,7 @@ import { ContactUs } from "./UI/Question";
 import Navbar from "./UI/Navbar";
 import Footer from "./UI/Footer";
 
-const montserrat = Montserrat({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"], weight:['400','600','800'] });
 
 export const metadata = {
   title: "elearning",

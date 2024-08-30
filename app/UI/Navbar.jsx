@@ -19,7 +19,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-function Login({ isOpen, onClose }) {
+export function Login({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
@@ -77,7 +77,7 @@ export default function Navbar() {
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <Link href="/">
-                  <div className="flex flex-shrink-0 items-center m-2">
+                  <div className="flex flex-shrink-0 items-center">
                     <Logo />
                   </div>
                 </Link>
@@ -90,7 +90,7 @@ export default function Navbar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'text-green-700' : 'text-black',
+                          item.current ? 'text-green-700 font-bold' : 'text-black',
                           'px-3 py-2 rounded-md text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}

@@ -1,9 +1,13 @@
 'use client';
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '../UI/buttonPrimary';
 import Link from 'next/link';
+import { Login } from '../UI/Navbar';
+import MpesaPaymentModal from './MpesaPaymentModal';
 
 export default function Trainings() {
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
+
     return (
         <div className="p-4 md:p-10 flex flex-col gap-10">
             <div className="md:flex md:flex-row flex-col gap-10">
@@ -59,9 +63,9 @@ export default function Trainings() {
                             <Button href="/account" variant="secondary">
                                 Add to Wishlist
                             </Button>
-                            <Button href="/about" variant="primary">
+                            <button onClick={() => setIsLoginOpen(true)} variant="primary">
                                 Buy Training
-                            </Button>
+                            </button>
                         </div>
                         <div className="flex flex-col space-y-4">
                             <h2 className="font-bold text-sm md:text-base">Dates and Venues</h2>
@@ -88,6 +92,7 @@ export default function Trainings() {
                     <p className="text-sm md:text-base">email@example.com</p>
                 </div>
             </div>
+            <MpesaPaymentModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
         </div>
     );
 }

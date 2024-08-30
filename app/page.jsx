@@ -13,7 +13,7 @@ export default function Home(){
                         <p className="md:w-8/12 text-sm 2xl:text-base font-light mb-10">
                         about Environmental conservation Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
-                        <button className="bg-secondary text-white font-semibold w-48 py-4 rounded-full mb-4 hover:scale-105">Explore</button>
+                        <button className="bg-secondary text-white font-semibold w-48 py-4 rounded-full mb-4 hover:scale-105">Enroll Now</button>
                         <div>
                             <div></div>
                             <p>Join over <span className="text-secondary font-semibold">{5000}+</span> Students</p>

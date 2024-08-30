@@ -3,7 +3,7 @@ import Logo from "@/app/UI/Logo";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-white py-12">
+    <footer className="bg-gradient-to-l from-primary text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="space-y-8">
@@ -13,13 +13,13 @@ export default function Footer() {
             </p>
             <div className="flex space-x-6">
               <Link href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-                <img src="/socialmedia/facebook.png" alt="Facebook" className="h-6 w-6 hover:opacity-80" />
+                <image src="/socialmedia/facebook.png" alt="Facebook" className="h-6 w-6 hover:opacity-80" />
               </Link>
               <Link href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-                <img src="/socialmedia/twitter.png" alt="Twitter" className="h-6 w-6 hover:opacity-80" />
+                <image src="/socialmedia/twitter.png" alt="Twitter" className="h-6 w-6 hover:opacity-80" />
               </Link>
               <Link href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-                <img src="/socialmedia/linkedin.png" alt="LinkedIn" className="h-6 w-6 hover:opacity-80" />
+                <image src="/socialmedia/linkedin.png" alt="LinkedIn" className="h-6 w-6 hover:opacity-80" />
               </Link>
             </div>
           </div>

@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 
 const COUNTRY_CODES = [
-    { code: '+254', country: 'Kenya' },
-    { code: '+256', country: 'Uganda' },
-    { code: '+255', country: 'Tanzania' },
+    { code: '+254', flag: '🇰🇪' },
+    { code: '+256', flag: '🇺🇬' },
+    { code: '+255', flag: '🇹🇿' },
 ];
 
-export default function MpesaPaymentModal({ onClose }) {
+export default function MpesaPaymentModal({ onClose, isOpen }) {
     const [mobileNumber, setMobileNumber] = useState('');
     const [countryCode, setCountryCode] = useState('+254');
 
@@ -28,41 +28,55 @@ export default function MpesaPaymentModal({ onClose }) {
         }
     };
 
+    const handleMobileNumberChange = (e) => {
+        const value = e.target.value;
+        if (/^[0-9]{0,9}$/.test(value) && (value === '' || /^([1|5|7])\d{0,8}$/.test(value))) {
+            setMobileNumber(value);
+        }
+    };
+
+    if (!isOpen) return null;
+
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" role="dialog" aria-modal="true">
-            <div className="bg-white rounded-lg p-6 w-80">
-                <h2 className="font-bold text-lg mb-4">M-Pesa Payment</h2>
-                <div className="flex items-center mb-4">
-                    <div className="relative w-10 h-10 mr-2">
-                        <Image src="/mpesa-logo.png" alt="M-Pesa" layout="fill" objectFit="contain" />
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 backdrop-blur-md" role="dialog" aria-modal="true">
+            <div className="bg-gradient-to-r from-gray-200 to-gray-300 rounded-3xl p-6 w-3/8">
+                <div className="relative bg-gradient-to-b from-gray-800 via-primary to-gray-200 h-48 rounded-lg mb-8 p-6">
+                    <div className="absolute top-0 left-0 m-5">
+                        <img src="/mpesa-logo.png" className="h-10" />
                     </div>
-                    <span className="font-semibold">Pay via M-Pesa</span>
+                    <div className="absolute bottom-0 right-0 m-5">
+                        <img src="/safaricom.png" className="h-10" />
+                    </div>
                 </div>
                 <form onSubmit={handlePaymentSubmit}>
-                    <div className="flex flex-col mb-4">
+                    <div className="items-center mb-4">
                         <select
                             value={countryCode}
                             onChange={(e) => setCountryCode(e.target.value)}
-                            className="border rounded p-2"
+                            className="border rounded p-2 h-11 bg-gray-200"
                             aria-label="Select country code"
                         >
-                            {COUNTRY_CODES.map(({ code, country }) => (
-                                <option key={code} value={code}>{`${code} (${country})`}</option>
+                            {COUNTRY_CODES.map(({ code, flag }) => (
+                                <option key={code} value={code}>
+                                    {`${flag} ${code}`}
+                                </option>
                             ))}
                         </select>
                         <input
                             type="tel"
                             value={mobileNumber}
-                            onChange={(e) => setMobileNumber(e.target.value)}
+                            onChange={handleMobileNumberChange}
                             placeholder="Mobile Number"
-                            className="border rounded p-2 mt-2"
+                            className="border rounded p-2 mt-2 bg-gray-200"
                             required
                             aria-label="Enter mobile number"
                         />
                     </div>
-                    <button type="submit" className="bg-blue-500 text-white rounded p-2 w-full">
-                        Confirm Payment
-                    </button>
+                    <div className="flex justify-center mt-16">
+                        <button type="submit" className="bg-secondary text-white rounded-full py-2 px-5">
+                            Confirm Payment
+                        </button>
+                    </div>
                 </form>
                 <button
                     onClick={onClose}
